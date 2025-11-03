@@ -406,6 +406,27 @@
             width: 100%;
             min-height: 400px;
         }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
 
         .feedback {
             padding: 15px;
@@ -564,6 +585,23 @@
             <div class="section" id="section1">
                 <h2>Section 1: Introduction to Suspension Systems</h2>
                 <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">Duration: 30 minutes</p>
+
+                <div class="content-block">
+                    <h3>🎥 Watch: Introduction to Suspension Systems</h3>
+                    <p>Let's start by watching this overview of how suspension systems work:</p>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                        <iframe src="https://www.youtube.com/embed/_k0Gjre1QlY?si=NGLJtoO99R2zmi3v" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px;" allowfullscreen></iframe>
+                    </div>
+                    <div class="info-card">
+                        <p><strong>💡 Key Points to Watch For:</strong></p>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>How springs absorb energy from road impacts</li>
+                            <li>The role of shock absorbers in controlling movement</li>
+                            <li>Different suspension designs and their applications</li>
+                            <li>The relationship between suspension and vehicle handling</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="content-block">
                     <h3>What is a Suspension System?</h3>
@@ -900,9 +938,66 @@
                 </div>
             </div>
 
-            <!-- Section 4: Break Time -->
+            <!-- Section 4: Optional Extended Learning -->
             <div class="section" id="section4">
-                <div class="break-screen">
+                <h2>📺 Bonus: How Suspension is Made</h2>
+                <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">Optional Extended Learning - 40 minutes</p>
+
+                <div class="info-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h3 style="color: white; margin-top: 0;">🏭 Factory Deep Dive</h3>
+                    <p style="color: white;">This comprehensive factory tour shows the entire manufacturing process of suspension components. This is OPTIONAL viewing that provides valuable industry insight.</p>
+                    <p style="color: white; margin-top: 10px;"><strong>You can watch this during class, during break, or at home later!</strong></p>
+                </div>
+
+                <div class="content-block">
+                    <h3>🎥 Watch: Suspension Manufacturing Process</h3>
+                    <p>See how suspension components are designed, tested, and manufactured in a modern factory:</p>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                        <iframe src="https://www.youtube.com/embed/TgXXfo_wxhg?si=l6b_KlE0yQNuuWsU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px;" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <p><strong>⏱️ Time Check:</strong> This video is 40 minutes long. Your instructor will let you know if you'll watch it in class or save it for later viewing.</p>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <h3>What You'll Learn From This Video</h3>
+                    <div class="component-grid">
+                        <div class="info-card">
+                            <h4>🔬 Engineering Design</h4>
+                            <p>See how engineers design and test suspension components using CAD software and simulation</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h4>🏭 Manufacturing Process</h4>
+                            <p>Watch springs being coiled, shock absorbers assembled, and components machined</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h4>🔍 Quality Control</h4>
+                            <p>Understand the rigorous testing procedures that ensure safety and reliability</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h4>⚙️ Industry Standards</h4>
+                            <p>Learn about the standards and regulations manufacturers must follow</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <strong>💼 Career Insight:</strong> This video provides excellent insight into the automotive manufacturing industry and potential career paths in suspension engineering and manufacturing.
+                </div>
+
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="prevSection()">← Previous</button>
+                    <button class="btn" onclick="nextSection()">Continue to Break →</button>
+                </div>
+            </div>
+
+            <!-- Section 5: Break Time -->
+            <div class="section" id="section5">
                     <h2>☕ Break Time</h2>
                     <p style="font-size: 1.3em; color: #555;">Take a 10-minute break</p>
                     <div class="break-timer" id="breakTimer">10:00</div>
@@ -912,9 +1007,9 @@
                 </div>
             </div>
 
-            <!-- Section 5: Tools, Safety & Legislation -->
-            <div class="section" id="section5">
-                <h2>Section 4: Tools, Safety & Legislation</h2>
+            <!-- Section 6: Tools, Safety & Legislation -->
+            <div class="section" id="section6">
+                <h2>Section 5: Tools, Safety & Legislation</h2>
                 <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">Duration: 25 minutes</p>
 
                 <div class="danger-box">
@@ -1084,9 +1179,9 @@
                 </div>
             </div>
 
-            <!-- Section 6: Maintenance Procedures -->
-            <div class="section" id="section6">
-                <h2>Section 5: Maintenance Procedures</h2>
+            <!-- Section 7: Maintenance Procedures -->
+            <div class="section" id="section7">
+                <h2>Section 6: Maintenance Procedures</h2>
                 <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">Duration: 30 minutes</p>
 
                 <div class="content-block">
@@ -1281,8 +1376,8 @@
                 </div>
             </div>
 
-            <!-- Section 7: Final Quiz -->
-            <div class="section" id="section7">
+            <!-- Section 8: Final Quiz -->
+            <div class="section" id="section8">
                 <h2>Final Knowledge Check</h2>
                 <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">Duration: 10 minutes</p>
 
@@ -1458,8 +1553,8 @@
                 </div>
             </div>
 
-            <!-- Section 8: Summary -->
-            <div class="section" id="section8">
+            <!-- Section 9: Summary -->
+            <div class="section" id="section9">
                 <h2>🎓 Lesson Complete!</h2>
                 
                 <div class="success-box">
@@ -1524,7 +1619,7 @@
     <script>
         // Session management
         let currentSection = 0;
-        let totalSections = 9; // Updated to include new interactive activities section
+        let totalSections = 10; // Updated to include factory video section
         let sessionStartTime = Date.now();
         let sessionDuration = 150 * 60 * 1000; // 2.5 hours in milliseconds
         let quizAnswers = {};
