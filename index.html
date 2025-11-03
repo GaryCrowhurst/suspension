@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Suspension Systems & Maintenance - Interactive Lesson</title>
     <style>
         * {
@@ -10,12 +10,29 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Remove tap highlight on mobile */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Custom tap highlight for interactive elements */
+        .btn, .quiz-option, .drag-item, .checklist li {
+            -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
         }
 
         .container {
@@ -456,8 +473,21 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
             .header h1 {
-                font-size: 1.5em;
+                font-size: 1.4em;
+            }
+            
+            .header p {
+                font-size: 0.9em;
+            }
+            
+            .timer {
+                font-size: 1em;
+                padding: 8px 15px;
             }
 
             .content {
@@ -465,7 +495,11 @@
             }
 
             .section h2 {
-                font-size: 1.5em;
+                font-size: 1.4em;
+            }
+            
+            .section h3 {
+                font-size: 1.2em;
             }
 
             .navigation {
@@ -474,10 +508,118 @@
 
             .btn {
                 width: 100%;
+                padding: 18px 30px;
+                font-size: 1.1em;
+                margin: 8px 0;
+                min-height: 50px;
+                touch-action: manipulation;
             }
 
             .component-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .activity-box {
+                padding: 20px 15px;
+            }
+            
+            .quiz-option {
+                padding: 18px;
+                font-size: 1em;
+                min-height: 50px;
+                display: flex;
+                align-items: center;
+                touch-action: manipulation;
+            }
+            
+            .drag-item {
+                padding: 18px 20px;
+                font-size: 1em;
+                min-height: 50px;
+                margin: 8px 0;
+                touch-action: pan-y;
+            }
+            
+            .drop-zone {
+                min-height: 80px;
+                padding: 25px;
+                margin: 15px 0;
+            }
+            
+            .checklist li {
+                padding: 18px 18px 18px 55px;
+                font-size: 1em;
+                min-height: 50px;
+                touch-action: manipulation;
+            }
+            
+            table {
+                font-size: 0.9em;
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+                min-width: 100px;
+            }
+            
+            .video-container {
+                margin: 15px 0;
+            }
+            
+            iframe {
+                min-height: 250px;
+            }
+            
+            .break-timer {
+                font-size: 3em;
+            }
+            
+            .score-display {
+                padding: 20px;
+                font-size: 1.2em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.2em;
+            }
+            
+            .section h2 {
+                font-size: 1.3em;
+            }
+            
+            .content-block, .info-card, .activity-box {
+                padding: 15px;
+            }
+            
+            .btn {
+                font-size: 1em;
+                padding: 16px 25px;
+            }
+        }
+        
+        /* Touch-friendly enhancements */
+        @media (hover: none) and (pointer: coarse) {
+            .quiz-option:active {
+                transform: scale(0.98);
+                background: #dee2e6;
+            }
+            
+            .btn:active {
+                transform: translateY(0) scale(0.98);
+            }
+            
+            .drag-item:active {
+                transform: scale(1.05);
+                box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            }
+            
+            .checklist li:active {
+                transform: scale(0.98);
             }
         }
 
@@ -558,6 +700,17 @@
                         <li>The timer at the top shows remaining session time</li>
                     </ul>
                 </div>
+                
+                <div class="info-card" style="background: #e3f2fd; border-left: 4px solid #2196f3;">
+                    <h4 style="color: #1565c0;">📲 Mobile Users - Interactive Tips</h4>
+                    <ul style="margin-left: 20px; line-height: 1.8; color: #0d47a1;">
+                        <li><strong>Quizzes:</strong> Tap options to select your answer</li>
+                        <li><strong>Drag & Drop:</strong> Touch and hold items, then drag to the correct box</li>
+                        <li><strong>Checklists:</strong> Tap items to tick them off</li>
+                        <li><strong>Videos:</strong> Tap to play, use full-screen for better viewing</li>
+                        <li><strong>Tables:</strong> Swipe left/right to scroll on narrow screens</li>
+                    </ul>
+                </div>
 
                 <div class="info-card">
                     <h4>🎯 Learning Outcomes</h4>
@@ -566,7 +719,7 @@
                         <li>Understand suspension system operation and purpose</li>
                         <li>Identify key suspension components</li>
                         <li>Describe routine maintenance procedures</li>
-                        <li>Recognize safety requirements and procedures</li>
+                        <li>Recognise safety requirements and procedures</li>
                         <li>Use appropriate tools and equipment safely</li>
                         <li>Perform basic inspections and checks</li>
                     </ul>
@@ -743,7 +896,8 @@
 
                 <div class="activity-box">
                     <h3>📱 Activity 2: Match the Component</h3>
-                    <p>Drag each suspension component to its correct description:</p>
+                    <p><strong>Mobile:</strong> Touch and hold each component, then drag to the correct description box.</p>
+                    <p><strong>Desktop:</strong> Click and drag each component to its correct description.</p>
                     
                     <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
                         <p style="margin-bottom: 15px;"><strong>Components to match:</strong></p>
@@ -757,22 +911,22 @@
 
                     <div class="info-card">
                         <p><strong>Description 1:</strong> Connects suspension to wheel hub with movement in multiple directions</p>
-                        <div class="drop-zone" data-answer="ball-joint" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div class="drop-zone" data-answer="ball-joint" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)"></div>
                     </div>
 
                     <div class="info-card">
                         <p><strong>Description 2:</strong> Combines spring and damper in one unit</p>
-                        <div class="drop-zone" data-answer="strut" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div class="drop-zone" data-answer="strut" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)"></div>
                     </div>
 
                     <div class="info-card">
                         <p><strong>Description 3:</strong> Reduces body roll during cornering</p>
-                        <div class="drop-zone" data-answer="anti-roll" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div class="drop-zone" data-answer="anti-roll" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)"></div>
                     </div>
 
                     <div class="info-card">
                         <p><strong>Description 4:</strong> A-shaped or wishbone link that controls wheel movement</p>
-                        <div class="drop-zone" data-answer="control-arm" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div class="drop-zone" data-answer="control-arm" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)"></div>
                     </div>
 
                     <button class="btn" onclick="checkDragDrop()">Check Answers</button>
@@ -945,7 +1099,7 @@
 
                 <div class="info-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
                     <h3 style="color: white; margin-top: 0;">🏭 Factory Deep Dive</h3>
-                    <p style="color: white;">This comprehensive factory tour shows the entyre manufacturing process of suspension components. This is OPTIONAL viewing that provides valuable industry insight.</p>
+                    <p style="color: white;">This comprehensive factory tour shows the entire manufacturing process of suspension components. This is OPTIONAL viewing that provides valuable industry insight.</p>
                     <p style="color: white; margin-top: 10px;"><strong>You can watch this during class, during break, or at home later!</strong></p>
                 </div>
 
@@ -1056,6 +1210,7 @@
                 <div class="activity-box">
                     <h3>📱 Activity 3: Safety Checklist</h3>
                     <p>Before starting suspension work, check off each safety requirement:</p>
+                    <p style="font-size: 0.9em; margin-top: 10px;"><strong>💡 Tip:</strong> Tap each item to tick it off as completed.</p>
                     
                     <ul class="checklist" id="safetyChecklist">
                         <li onclick="toggleCheck(this)">Vehicle parked on level, firm ground</li>
@@ -1711,25 +1866,79 @@
 
         // Drag and Drop
         let draggedElement = null;
+        let touchStartX = 0;
+        let touchStartY = 0;
 
         function initializeDragDrop() {
             let dragItems = document.querySelectorAll('.drag-item');
             dragItems.forEach(item => {
+                // Desktop drag events
                 item.addEventListener('dragstart', function(e) {
                     draggedElement = this;
                     e.dataTransfer.effectAllowed = 'move';
+                    this.style.opacity = '0.5';
                 });
                 
-                // Touch support
+                item.addEventListener('dragend', function(e) {
+                    this.style.opacity = '1';
+                });
+                
+                // Mobile touch events
                 item.addEventListener('touchstart', function(e) {
                     draggedElement = this;
-                });
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                    this.style.opacity = '0.7';
+                    this.style.transform = 'scale(1.05)';
+                }, { passive: true });
+                
+                item.addEventListener('touchmove', function(e) {
+                    if (!draggedElement) return;
+                    
+                    let touch = e.touches[0];
+                    let currentElement = document.elementFromPoint(touch.clientX, touch.clientY);
+                    
+                    // Remove drag-over from all drop zones
+                    document.querySelectorAll('.drop-zone').forEach(zone => {
+                        zone.classList.remove('drag-over');
+                    });
+                    
+                    // Add drag-over to current drop zone if hovering over one
+                    if (currentElement && currentElement.classList.contains('drop-zone')) {
+                        currentElement.classList.add('drag-over');
+                    }
+                }, { passive: true });
+                
+                item.addEventListener('touchend', function(e) {
+                    if (!draggedElement) return;
+                    
+                    let touch = e.changedTouches[0];
+                    let dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+                    
+                    // Find the drop zone (might be a parent)
+                    while (dropTarget && !dropTarget.classList.contains('drop-zone')) {
+                        dropTarget = dropTarget.parentElement;
+                    }
+                    
+                    if (dropTarget && dropTarget.classList.contains('drop-zone')) {
+                        dropTarget.appendChild(draggedElement);
+                        dropTarget.classList.remove('drag-over');
+                    }
+                    
+                    this.style.opacity = '1';
+                    this.style.transform = 'scale(1)';
+                    draggedElement = null;
+                }, { passive: true });
             });
         }
 
         function allowDrop(e) {
             e.preventDefault();
             e.currentTarget.classList.add('drag-over');
+        }
+        
+        function dragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
         }
 
         function drop(e) {
@@ -1738,6 +1947,7 @@
             
             if (draggedElement && e.currentTarget.classList.contains('drop-zone')) {
                 e.currentTarget.appendChild(draggedElement);
+                draggedElement.style.opacity = '1';
                 draggedElement = null;
             }
         }
