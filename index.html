@@ -31,7 +31,7 @@
         }
         
         /* Custom tap highlight for interactive elements */
-        .btn, .quiz-option, .drag-item, .checklist li {
+        .btn, .quiz-option, .dropdown-select, .checklist li {
             -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
         }
 
@@ -241,42 +241,60 @@
             margin: 20px 0;
         }
 
-        .drag-item {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            cursor: move;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            user-select: none;
-            touch-action: none;
-            color: #1e3c72;
-            font-weight: 600;
+        .dropdown-select {
+            width: 100%;
+            padding: 15px;
+            font-size: 1em;
             border: 2px solid #667eea;
-        }
-
-        .drag-item:hover {
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            background: #f8f9fa;
-        }
-
-        .drop-zone {
-            background: rgba(255,255,255,0.3);
-            border: 2px dashed white;
-            border-radius: 10px;
-            padding: 20px;
-            min-height: 60px;
-            margin: 10px 0;
+            border-radius: 8px;
+            background: white;
+            color: #212529;
+            margin-top: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+            padding-right: 40px;
             transition: all 0.3s;
+            min-height: 50px;
         }
-
-        .drop-zone.drag-over {
-            background: rgba(255,255,255,0.5);
-            border-style: solid;
+        
+        .dropdown-select:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
         }
-
-        .drop-zone.correct {
-            background: rgba(76, 175, 80, 0.3);
-            border-color: #4caf50;
+        
+        .dropdown-select.correct {
+            border-color: #28a745;
+            background-color: #d4edda;
+        }
+        
+        .dropdown-select.incorrect {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+        }
+        
+        .dropdown-feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        
+        .dropdown-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #28a745;
+        }
+        
+        .dropdown-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #dc3545;
         }
 
         .checklist {
@@ -532,18 +550,10 @@
                 touch-action: manipulation;
             }
             
-            .drag-item {
-                padding: 18px 20px;
-                font-size: 1em;
-                min-height: 50px;
-                margin: 8px 0;
-                touch-action: pan-y;
-            }
-            
-            .drop-zone {
-                min-height: 80px;
-                padding: 25px;
-                margin: 15px 0;
+            .dropdown-select {
+                padding: 18px;
+                font-size: 1.05em;
+                min-height: 55px;
             }
             
             .checklist li {
@@ -613,9 +623,8 @@
                 transform: translateY(0) scale(0.98);
             }
             
-            .drag-item:active {
-                transform: scale(1.05);
-                box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            .dropdown-select:active {
+                border-color: #2a5298;
             }
             
             .checklist li:active {
@@ -705,10 +714,11 @@
                     <h4 style="color: #1565c0;">📲 Mobile Users - Interactive Tips</h4>
                     <ul style="margin-left: 20px; line-height: 1.8; color: #0d47a1;">
                         <li><strong>Quizzes:</strong> Tap options to select your answer</li>
-                        <li><strong>Drag & Drop:</strong> Touch and hold items, then drag to the correct box</li>
+                        <li><strong>Dropdowns:</strong> Tap the dropdown menu and select the correct answer</li>
                         <li><strong>Checklists:</strong> Tap items to tick them off</li>
                         <li><strong>Videos:</strong> Tap to play, use full-screen for better viewing</li>
                         <li><strong>Tables:</strong> Swipe left/right to scroll on narrow screens</li>
+                        <li><strong>Buttons:</strong> Large touch-friendly buttons throughout</li>
                     </ul>
                 </div>
 
@@ -896,41 +906,58 @@
 
                 <div class="activity-box">
                     <h3>📱 Activity 2: Match the Component</h3>
-                    <p><strong>Mobile:</strong> Touch and hold each component, then drag to the correct description box.</p>
-                    <p><strong>Desktop:</strong> Click and drag each component to its correct description.</p>
+                    <p><strong>Select the correct component for each description from the dropdown menu.</strong></p>
                     
-                    <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
-                        <p style="margin-bottom: 15px;"><strong>Components to match:</strong></p>
-                        <div class="drag-drop-area" id="dragItems">
-                            <div class="drag-item" draggable="true" data-id="strut">Suspension Strut</div>
-                            <div class="drag-item" draggable="true" data-id="control-arm">Control Arm</div>
-                            <div class="drag-item" draggable="true" data-id="anti-roll">Anti-Roll Bar</div>
-                            <div class="drag-item" draggable="true" data-id="ball-joint">Ball Joint</div>
-                        </div>
-                    </div>
-
                     <div class="info-card">
                         <p><strong>Description 1:</strong> Connects suspension to wheel hub with movement in multiple directions</p>
-                        <div class="drop-zone" data-answer="ball-joint" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)"></div>
+                        <select class="dropdown-select" data-answer="ball-joint" onchange="checkDropdown(this)">
+                            <option value="">-- Select Component --</option>
+                            <option value="strut">Suspension Strut</option>
+                            <option value="control-arm">Control Arm</option>
+                            <option value="anti-roll">Anti-Roll Bar</option>
+                            <option value="ball-joint">Ball Joint</option>
+                        </select>
+                        <div class="dropdown-feedback" style="display: none;"></div>
                     </div>
 
                     <div class="info-card">
                         <p><strong>Description 2:</strong> Combines spring and damper in one unit</p>
-                        <div class="drop-zone" data-answer="strut" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)"></div>
+                        <select class="dropdown-select" data-answer="strut" onchange="checkDropdown(this)">
+                            <option value="">-- Select Component --</option>
+                            <option value="strut">Suspension Strut</option>
+                            <option value="control-arm">Control Arm</option>
+                            <option value="anti-roll">Anti-Roll Bar</option>
+                            <option value="ball-joint">Ball Joint</option>
+                        </select>
+                        <div class="dropdown-feedback" style="display: none;"></div>
                     </div>
 
                     <div class="info-card">
                         <p><strong>Description 3:</strong> Reduces body roll during cornering</p>
-                        <div class="drop-zone" data-answer="anti-roll" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)"></div>
+                        <select class="dropdown-select" data-answer="anti-roll" onchange="checkDropdown(this)">
+                            <option value="">-- Select Component --</option>
+                            <option value="strut">Suspension Strut</option>
+                            <option value="control-arm">Control Arm</option>
+                            <option value="anti-roll">Anti-Roll Bar</option>
+                            <option value="ball-joint">Ball Joint</option>
+                        </select>
+                        <div class="dropdown-feedback" style="display: none;"></div>
                     </div>
 
                     <div class="info-card">
                         <p><strong>Description 4:</strong> A-shaped or wishbone link that controls wheel movement</p>
-                        <div class="drop-zone" data-answer="control-arm" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)"></div>
+                        <select class="dropdown-select" data-answer="control-arm" onchange="checkDropdown(this)">
+                            <option value="">-- Select Component --</option>
+                            <option value="strut">Suspension Strut</option>
+                            <option value="control-arm">Control Arm</option>
+                            <option value="anti-roll">Anti-Roll Bar</option>
+                            <option value="ball-joint">Ball Joint</option>
+                        </select>
+                        <div class="dropdown-feedback" style="display: none;"></div>
                     </div>
 
-                    <button class="btn" onclick="checkDragDrop()">Check Answers</button>
-                    <div id="dragdrop-feedback" class="feedback"></div>
+                    <button class="btn" onclick="checkAllDropdowns()">Check All Answers</button>
+                    <div id="dropdown-overall-feedback" class="feedback"></div>
                 </div>
 
                 <div class="content-block">
@@ -1784,7 +1811,6 @@
         window.onload = function() {
             updateProgress();
             startSessionTimer();
-            initializeDragDrop();
         };
 
         // Timer
@@ -1864,116 +1890,59 @@
             }
         }
 
-        // Drag and Drop
-        let draggedElement = null;
-        let touchStartX = 0;
-        let touchStartY = 0;
-
-        function initializeDragDrop() {
-            let dragItems = document.querySelectorAll('.drag-item');
-            dragItems.forEach(item => {
-                // Desktop drag events
-                item.addEventListener('dragstart', function(e) {
-                    draggedElement = this;
-                    e.dataTransfer.effectAllowed = 'move';
-                    this.style.opacity = '0.5';
-                });
-                
-                item.addEventListener('dragend', function(e) {
-                    this.style.opacity = '1';
-                });
-                
-                // Mobile touch events
-                item.addEventListener('touchstart', function(e) {
-                    draggedElement = this;
-                    touchStartX = e.touches[0].clientX;
-                    touchStartY = e.touches[0].clientY;
-                    this.style.opacity = '0.7';
-                    this.style.transform = 'scale(1.05)';
-                }, { passive: true });
-                
-                item.addEventListener('touchmove', function(e) {
-                    if (!draggedElement) return;
-                    
-                    let touch = e.touches[0];
-                    let currentElement = document.elementFromPoint(touch.clientX, touch.clientY);
-                    
-                    // Remove drag-over from all drop zones
-                    document.querySelectorAll('.drop-zone').forEach(zone => {
-                        zone.classList.remove('drag-over');
-                    });
-                    
-                    // Add drag-over to current drop zone if hovering over one
-                    if (currentElement && currentElement.classList.contains('drop-zone')) {
-                        currentElement.classList.add('drag-over');
-                    }
-                }, { passive: true });
-                
-                item.addEventListener('touchend', function(e) {
-                    if (!draggedElement) return;
-                    
-                    let touch = e.changedTouches[0];
-                    let dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
-                    
-                    // Find the drop zone (might be a parent)
-                    while (dropTarget && !dropTarget.classList.contains('drop-zone')) {
-                        dropTarget = dropTarget.parentElement;
-                    }
-                    
-                    if (dropTarget && dropTarget.classList.contains('drop-zone')) {
-                        dropTarget.appendChild(draggedElement);
-                        dropTarget.classList.remove('drag-over');
-                    }
-                    
-                    this.style.opacity = '1';
-                    this.style.transform = 'scale(1)';
-                    draggedElement = null;
-                }, { passive: true });
-            });
-        }
-
-        function allowDrop(e) {
-            e.preventDefault();
-            e.currentTarget.classList.add('drag-over');
-        }
-        
-        function dragLeave(e) {
-            e.currentTarget.classList.remove('drag-over');
-        }
-
-        function drop(e) {
-            e.preventDefault();
-            e.currentTarget.classList.remove('drag-over');
+        // Dropdown functionality
+        function checkDropdown(selectElement) {
+            let selectedValue = selectElement.value;
+            let correctAnswer = selectElement.getAttribute('data-answer');
+            let feedbackDiv = selectElement.nextElementSibling;
             
-            if (draggedElement && e.currentTarget.classList.contains('drop-zone')) {
-                e.currentTarget.appendChild(draggedElement);
-                draggedElement.style.opacity = '1';
-                draggedElement = null;
+            if (selectedValue === '') {
+                selectElement.className = 'dropdown-select';
+                feedbackDiv.style.display = 'none';
+                return;
+            }
+            
+            if (selectedValue === correctAnswer) {
+                selectElement.className = 'dropdown-select correct';
+                feedbackDiv.className = 'dropdown-feedback correct';
+                feedbackDiv.innerHTML = '✓ Correct!';
+                feedbackDiv.style.display = 'block';
+            } else {
+                selectElement.className = 'dropdown-select incorrect';
+                feedbackDiv.className = 'dropdown-feedback incorrect';
+                feedbackDiv.innerHTML = '✗ Incorrect. Try again.';
+                feedbackDiv.style.display = 'block';
             }
         }
-
-        function checkDragDrop() {
+        
+        function checkAllDropdowns() {
+            let allDropdowns = document.querySelectorAll('.dropdown-select');
             let allCorrect = true;
-            let dropZones = document.querySelectorAll('.drop-zone');
+            let answeredCount = 0;
             
-            dropZones.forEach(zone => {
-                let correctAnswer = zone.dataset.answer;
-                let droppedItem = zone.querySelector('.drag-item');
+            allDropdowns.forEach(dropdown => {
+                let selectedValue = dropdown.value;
+                let correctAnswer = dropdown.getAttribute('data-answer');
                 
-                if (droppedItem && droppedItem.dataset.id === correctAnswer) {
-                    zone.classList.add('correct');
-                } else {
-                    allCorrect = false;
+                if (selectedValue !== '') {
+                    answeredCount++;
+                    if (selectedValue !== correctAnswer) {
+                        allCorrect = false;
+                    }
                 }
             });
             
-            let feedback = document.getElementById('dragdrop-feedback');
-            if (allCorrect) {
-                feedback.className = 'feedback success-box show';
-                feedback.innerHTML = '<strong>✓ Excellent!</strong> All components matched correctly!';
+            let overallFeedback = document.getElementById('dropdown-overall-feedback');
+            
+            if (answeredCount < allDropdowns.length) {
+                overallFeedback.className = 'feedback warning-box show';
+                overallFeedback.innerHTML = '<strong>⚠️ Not Complete:</strong> Please answer all questions before checking.';
+            } else if (allCorrect) {
+                overallFeedback.className = 'feedback success-box show';
+                overallFeedback.innerHTML = '<strong>✓ Excellent!</strong> All components matched correctly!';
             } else {
-                feedback.className = 'feedback warning-box show';
-                feedback.innerHTML = '<strong>Not quite right.</strong> Review the descriptions and try again.';
+                overallFeedback.className = 'feedback warning-box show';
+                overallFeedback.innerHTML = '<strong>Not quite right.</strong> Review the incorrect answers highlighted above and try again.';
             }
         }
 
@@ -2045,14 +2014,6 @@
             }, 1000);
         }
 
-        // Prevent drag ghost image on mobile
-        document.addEventListener('dragstart', function(e) {
-            if (e.target.classList.contains('drag-item')) {
-                let img = new Image();
-                img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-                e.dataTransfer.setDragImage(img, 0, 0);
-            }
-        });
     </script>
 </body>
 </html>
